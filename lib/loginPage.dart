@@ -4,6 +4,7 @@ import 'package:restaurent_frontend/signUppage.dart';
 
 import 'const.dart';
 import 'forgotPassword.dart';
+import 'loginPhoneAuth.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -139,7 +140,11 @@ class _LoginPageState extends State<LoginPage> {
                             color: ConstantColors.loginButtonBakground,
                             textColor: ConstantColors.whiteColor,
                             child: Text('Login'),
-                            onPressed: () {},
+                            onPressed: () {
+                                  Navigator.of(context).push(CupertinoPageRoute(
+                            builder: (BuildContext context)=>LoginPhonAuth()
+                          ));
+                            },
                           ),
                         ),
                       ),

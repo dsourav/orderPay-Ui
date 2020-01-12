@@ -1,11 +1,16 @@
+
 import 'package:flutter/material.dart';
 import 'package:restaurent_frontend/const.dart';
+
 class ForGorPassWord extends StatefulWidget {
   @override
   _ForGorPassWordState createState() => _ForGorPassWordState();
 }
 
 class _ForGorPassWordState extends State<ForGorPassWord> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +30,7 @@ class _ForGorPassWordState extends State<ForGorPassWord> {
           ),
         ),
 
-        body: Container(
+        body:    Container(
           margin: EdgeInsets.symmetric(horizontal: 30.0),
           child: SingleChildScrollView(
             child: Column(
