@@ -10,8 +10,10 @@ class ConstantColors {
   static Color welcomeText = Color.fromRGBO(38, 49, 95, 1.0);
   static Color whiteColor = Colors.white;
   static Color greyColor = Colors.grey;
+  static Color amberColor = Colors.amber;
   static Color inputTextBackground = Color.fromRGBO(236, 237, 241, 1.0);
   static Color loginButtonBakground = Color.fromRGBO(8, 10, 65, 1.0);
+    static Color greyShadow =Colors.grey.withOpacity(0.5);
 }
 
 //8, 10, 65

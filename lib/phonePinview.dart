@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+
 
 import 'const.dart';
+import 'loginQrPage.dart';
 
 class PhonePinView extends StatefulWidget {
   @override
@@ -66,7 +68,8 @@ class _PhonePinViewState extends State<PhonePinView> {
                        SizedBox(width: 10,),
                       customePinView(ConstantColors.welcomeText),
                        SizedBox(width: 10,),
-                      customePinView(ConstantColors.welcomeText),
+                       customePinView(ConstantColors.welcomeText)
+                     
 
                     ],
                   ),
@@ -107,6 +110,9 @@ class _PhonePinViewState extends State<PhonePinView> {
                         height: 55.0,
                         child: TextField(
                           onSubmitted: (value){
+                               Navigator.of(context).push(CupertinoPageRoute(
+                            builder: (BuildContext context)=>LoginQrPage()
+                          ));
 
                           },
                           style:TextStyle(

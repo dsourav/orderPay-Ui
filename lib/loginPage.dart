@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 25.0,
+                        height: 20.0,
                       ),
                       FlatButton(
                         
@@ -167,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                       SizedBox(
-                        height: 25.0,
+                        height: 20.0,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
