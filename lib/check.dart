@@ -85,8 +85,8 @@ class _CheckPageState extends State<CheckPage> {
                       children: <Widget>[
                         FullPay(),
                        SplitPay(),
-                        Container(),
-                        Container(),
+                       FullPay(),
+                       FullPay(),
                       ],
                     ),
                   ),

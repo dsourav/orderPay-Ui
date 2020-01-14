@@ -15,6 +15,9 @@ class ConstantColors {
   static Color loginButtonBakground = Color.fromRGBO(8, 10, 65, 1.0);
   static Color greyShadow =Colors.grey.withOpacity(0.5);
   static Color blueColor=    Colors.blue;
+  static Color paymentDoneBackground = Color.fromRGBO(88, 96, 119, 1.0);
+  
+
 }
 
 

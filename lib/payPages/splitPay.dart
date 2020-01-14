@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:restaurent_frontend/paymentPages/splitPAymentMEthod.dart';
 
 import '../const.dart';
 
@@ -9,14 +11,14 @@ class SplitPay extends StatefulWidget {
 }
 
 class _SplitPayState extends State<SplitPay> {
-   int _value = 6;
+  int _value = 6;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ConstantColors.whiteColor,
       body: Container(
         child: SingleChildScrollView(
-                  child: Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Center(
@@ -31,13 +33,16 @@ class _SplitPayState extends State<SplitPay> {
                   ),
                 ),
               ),
-               SizedBox(height: 20.0,),
+              SizedBox(
+                height: 20.0,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 60.0),
                 child: Row(
                   children: <Widget>[
                     Expanded(
                       child: FloatingActionButton(
+                        heroTag: "btn1",
                         mini: true,
                         backgroundColor: ConstantColors.loginpageSignUpButton,
                         onPressed: () {},
@@ -58,16 +63,20 @@ class _SplitPayState extends State<SplitPay> {
                     ),
                     Expanded(
                       child: FloatingActionButton(
+                        heroTag: "btn2",
                         mini: true,
                         backgroundColor: ConstantColors.loginpageSignUpButton,
                         onPressed: () {},
-                        child: Icon(Icons.add, color: ConstantColors.whiteColor),
+                        child:
+                            Icon(Icons.add, color: ConstantColors.whiteColor),
                       ),
                     )
                   ],
                 ),
               ),
-                 SizedBox(height: 10.0,),
+              SizedBox(
+                height: 10.0,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 25.0),
                 child: ClipPath(
@@ -77,46 +86,69 @@ class _SplitPayState extends State<SplitPay> {
                       color: ConstantColors.inputTextBackground,
                       child: Column(
                         children: <Widget>[
-                          buildBillWidget('All bill','55\$',ConstantColors.greyColor,20.0,FontWeight.normal),
+                          buildBillWidget(
+                              'All bill',
+                              '55\$',
+                              ConstantColors.greyColor,
+                              20.0,
+                              FontWeight.normal),
                           buildBillDivider(),
-                          buildBillWidget('Tip','5.5\$',ConstantColors.greyColor,20.0,FontWeight.normal),
+                          buildBillWidget(
+                              'Tip',
+                              '5.5\$',
+                              ConstantColors.greyColor,
+                              20.0,
+                              FontWeight.normal),
                           buildBillDivider(),
-                          buildBillWidget('Total:','60.5\$',ConstantColors.backgroundBlack,30.0,FontWeight.bold),
-                          SizedBox(height: 20.0,)
+                          buildBillWidget(
+                              'Total:',
+                              '60.5\$',
+                              ConstantColors.backgroundBlack,
+                              30.0,
+                              FontWeight.bold),
+                          SizedBox(
+                            height: 20.0,
+                          )
                         ],
                       )),
                 ),
               ),
-               SizedBox(height: 30.0,),
+              SizedBox(
+                height: 30.0,
+              ),
               Container(
-                    margin: EdgeInsets.only(left: 20.0),
-                    child: Text('How much would you like to tip?',
-                    style: TextStyle(fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                    color: ConstantColors.greyColor),),
-                  ),
-
-                   Slider(
-                        value: _value.toDouble(),
-                        min: 1.0,
-                        max: 10.0,
-
-                        activeColor: ConstantColors.loginpageSignUpButton,
-                        inactiveColor: ConstantColors.greyShadow,
-                        label: '$_value',
-                        divisions: 10,
-                        onChanged: (double newValue) {
-                          setState(() {
-                            _value = newValue.round();
-                          });
-                        },
-                        semanticFormatterCallback: (double newValue) {
-                          return '${newValue.round()} dollars';
-                        }
-                    ),
-                    SizedBox(height: 20.0,),
-                  paymentButton(),
-                   SizedBox(height: 30.0,),
+                margin: EdgeInsets.only(left: 20.0),
+                child: Text(
+                  'How much would you like to tip?',
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: ConstantColors.greyColor),
+                ),
+              ),
+              Slider(
+                  value: _value.toDouble(),
+                  min: 1.0,
+                  max: 10.0,
+                  activeColor: ConstantColors.loginpageSignUpButton,
+                  inactiveColor: ConstantColors.greyShadow,
+                  label: '$_value',
+                  divisions: 10,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      _value = newValue.round();
+                    });
+                  },
+                  semanticFormatterCallback: (double newValue) {
+                    return '${newValue.round()} dollars';
+                  }),
+              SizedBox(
+                height: 20.0,
+              ),
+              paymentButton(),
+              SizedBox(
+                height: 30.0,
+              ),
             ],
           ),
         ),
@@ -147,13 +179,17 @@ class _SplitPayState extends State<SplitPay> {
               ],
             ),
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).push(CupertinoPageRoute(
+                builder: (BuildContext context) => SplitPAymentMethod()));
+          },
         ),
       ),
     );
   }
 
-  buildBillWidget(billTile,billPrice,priceColor,pricefontSize,priceFontWeight) {
+  buildBillWidget(
+      billTile, billPrice, priceColor, pricefontSize, priceFontWeight) {
     return Expanded(
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 30.0),
@@ -163,7 +199,7 @@ class _SplitPayState extends State<SplitPay> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                 billTile,
+                  billTile,
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -179,8 +215,9 @@ class _SplitPayState extends State<SplitPay> {
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontWeight: priceFontWeight,
-                      color:priceColor, fontSize: 20.0),
+                      fontWeight: priceFontWeight,
+                      color: priceColor,
+                      fontSize: 20.0),
                 ),
               ),
             )
@@ -189,12 +226,12 @@ class _SplitPayState extends State<SplitPay> {
       ),
     );
   }
-  buildBillDivider(){
+
+  buildBillDivider() {
     return Container(
       height: 1.0,
       margin: EdgeInsets.symmetric(horizontal: 10.0),
-     color: ConstantColors.whiteColor.withOpacity(0.7),
-
+      color: ConstantColors.whiteColor.withOpacity(0.7),
     );
   }
 }
