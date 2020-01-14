@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurent_frontend/const.dart';
+
+import 'QrscanResultRestaurent.dart';
 
 class FoodInfoPage extends StatefulWidget {
   @override
@@ -7,6 +10,41 @@ class FoodInfoPage extends StatefulWidget {
 }
 
 class _FoodInfoPageState extends State<FoodInfoPage> {
+  int _currentRadioIndex1 = 1;
+   int _currentRadioIndex2 = 1;
+
+  List<RadioModel> _groupRadioAdditional = [
+    RadioModel(
+      text: "All",
+      index: 1,
+    ),
+    RadioModel(
+      text: "Herbes",
+      index: 2,
+    ),
+    RadioModel(
+      text: "Cheese",
+      index: 3,
+    ),
+  ];
+   List<RadioModel> _groupRadioSauce = [
+    RadioModel(
+      text: "Without Sauce",
+      index: 1,
+    ),
+    RadioModel(
+      text: "Mint Sauce",
+      index: 2,
+    ),
+    RadioModel(
+      text: "Peanut Sauce",
+      index: 3,
+    ),
+    RadioModel(
+      text: "Sweet & Sour Sauce",
+      index: 3,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -160,111 +198,8 @@ class _FoodInfoPageState extends State<FoodInfoPage> {
                           topRight: Radius.circular(20.0),
                         )),
                         context: context,
-                        builder: (context) => Container(
-                              height: MediaQuery.of(context).size.height / 2,
-                              child: ListView(
-                                children: <Widget>[
-                                  SizedBox(
-                                    height: 15.0,
-                                  ),
-                                  Container(
-                                    margin:
-                                        EdgeInsets.symmetric(horizontal: 20.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Text(
-                                            'Cautro Formaggie-Soup',
-                                            style: TextStyle(fontSize: 17.0),
-                                          ),
-                                        ),
-                                        InkWell(
-                                          child: Text(
-                                            'x',
-                                            style: TextStyle(fontSize: 17.0),
-                                          ),
-                                          onTap: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  Container(
-                                    margin:
-                                        EdgeInsets.symmetric(horizontal: 10.0),
-                                    height:
-                                        MediaQuery.of(context).size.height / 4,
-                                    child: Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Container(
-                                            margin: EdgeInsets.only(right: 7.0),
-                                            child: Image.asset(
-                                              'assets/images/recipelab.png',
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            margin: EdgeInsets.only(right: 7.0),
-                                            child: Image.asset(
-                                              'assets/images/recipelab.png',
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            margin: EdgeInsets.only(right: 7.0),
-                                            child: SizedBox(
-                                              child:   Container(
-                                                      //   height:  MediaQuery.of(context).size.height / 4 ,
-                                                      decoration: BoxDecoration(
-                                                          image: DecorationImage(
-                                                              fit: BoxFit.fill,
-                                                              image: AssetImage(
-                                                                'assets/images/recipelab.png',
-                                                              ))),
-                                                      child: Container(
-                                                        // height: MediaQuery.of(context).size.height / 4  ,
-
-                                                        color: ConstantColors
-                                                            .backgroundBlack
-                                                            .withOpacity(0.4),
-                                                        child: Center(
-                                                          child: Text(
-                                                            '+3',
-                                                            style: TextStyle(
-                                                                fontSize: 17.0,
-                                                                color: ConstantColors
-                                                                    .whiteColor),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                              
-                                              // Stack(
-                                              //     alignment: Alignment.center,
-                                              //     children: <Widget>[
-                                                  
-                                              //       //   Text('+3', style: TextStyle(fontSize: 17.0,color: ConstantColors.whiteColor),)
-                                              //     ]),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ));
+                        builder: (context) =>
+                            buildLikeDislikeWithInfoModalSheet());
                   },
                 ),
               ),
@@ -309,8 +244,247 @@ class _FoodInfoPageState extends State<FoodInfoPage> {
     );
   }
 
-  makeChangesButtonTap() {}
-  sendToorderButtonTap() {}
+  buildLikeDislikeButton(buttonTExt, icon, color) {
+    return Expanded(
+      child: RaisedButton.icon(
+          color: ConstantColors.inputTextBackground,
+          shape: RoundedRectangleBorder(
+              side: BorderSide(color: ConstantColors.greyColor),
+              borderRadius: BorderRadius.circular(7.0)),
+          //  elevation: 8.0,
+          textColor: color,
+          icon: Text(buttonTExt),
+          onPressed: () {},
+          label: Image.asset(
+            icon,
+            height: 15.0,
+            width: 15.0,
+            fit: BoxFit.fill,
+          )),
+    );
+  }
+
+  buildLikeDislikeWithInfoModalSheet() {
+    return Container(
+      height: MediaQuery.of(context).size.height / 2,
+      child: ListView(
+        children: <Widget>[
+          SizedBox(
+            height: 15.0,
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    'Cautro Formaggie-Soup',
+                    style: TextStyle(fontSize: 17.0),
+                  ),
+                ),
+                InkWell(
+                  child: Text(
+                    'x',
+                    style: TextStyle(fontSize: 17.0),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10.0),
+            height: 110.0,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(right: 7.0),
+                    child: Image.asset(
+                      'assets/images/recipelab.png',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(right: 7.0),
+                    child: Image.asset(
+                      'assets/images/recipelab.png',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(right: 7.0),
+                    child: SizedBox(
+                      height: 110.0,
+                      child: Container(
+                        //   height:  MediaQuery.of(context).size.height / 4 ,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: AssetImage(
+                                  'assets/images/recipelab.png',
+                                ))),
+                        child: Container(
+                          // height: MediaQuery.of(context).size.height / 4  ,
+
+                          color:
+                              ConstantColors.backgroundBlack.withOpacity(0.4),
+                          child: Center(
+                            child: Text(
+                              '+3',
+                              style: TextStyle(
+                                  fontSize: 30.0,
+                                  color: ConstantColors.whiteColor),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          SizedBox(height: 25.0),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 50.0),
+            child: Text(
+              'loremu lipsum dolor ser anythinh you want is here . you will love the product if you purchase it',
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                  fontSize: 17.0,
+                  color: ConstantColors.backgroundBlack,
+                  fontWeight: FontWeight.normal),
+            ),
+          ),
+          SizedBox(height: 25.0),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 50.0),
+            child: Row(
+              children: <Widget>[
+                buildLikeDislikeButton('I Like it', 'assets/images/like.png',
+                    ConstantColors.blueColor),
+                SizedBox(width: 25.0),
+                buildLikeDislikeButton(
+                    'I Dislike it',
+                    'assets/images/dislike.png',
+                    ConstantColors.loginpageSignUpButton)
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  makeChangesButtonTap() {
+    showModalBottomSheet(
+        backgroundColor: ConstantColors.whiteColor,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        )),
+        context: context,
+        builder: (context) => StatefulBuilder(
+              builder: (BuildContext context, StateSetter setModalstate) =>
+                  makeChangesModalSheet(setModalstate),
+            ));
+  }
+
+  sendToorderButtonTap() {
+       Navigator.of(context).push(CupertinoPageRoute(
+                            builder: (BuildContext context)=>QrCOdeResultRestaurent()
+                          ));
+  }
+  makeChangesModalSheet(StateSetter setModalstate) {
+    return Container(
+      height: MediaQuery.of(context).size.height / 1.8,
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 20.0),
+      child: ListView(
+        children: <Widget>[
+          SizedBox(
+            height: 15.0,
+          ),
+          Text(
+            'Additionally',
+            textAlign: TextAlign.justify,
+            style: TextStyle(
+                fontSize: 17.0,
+                color: ConstantColors.backgroundBlack,
+                fontWeight: FontWeight.normal),
+          ),
+         
+          //  radioBoxDivider(),
+          radioBoxWidget(setModalstate,_groupRadioAdditional,1),
+          SizedBox(
+            height: 15.0,
+          ),
+           Text(
+            'Sauce',
+            textAlign: TextAlign.justify,
+            style: TextStyle(
+                fontSize: 17.0,
+                color: ConstantColors.backgroundBlack,
+                fontWeight: FontWeight.normal),
+          ),
+           radioBoxWidget(setModalstate,_groupRadioSauce,2),
+
+          // radioBoxWidget('Herbes',false),
+        ],
+      ),
+    );
+  }
+
+  radioBoxDivider() {
+    return Container(
+      height: 1.0,
+      width: double.infinity,
+      color: ConstantColors.greyColor.withOpacity(0.5),
+    );
+  }
+
+  radioBoxWidget(StateSetter setModalstate,List<RadioModel> list,int index) {
+    return ListView(
+      physics: ScrollPhysics(),
+      shrinkWrap: true,
+      //  padding: EdgeInsets.all(8.0),
+      children: list
+          .map((item) => Column(
+                children: <Widget>[
+                
+                  RadioListTile(
+                    groupValue: index==1?_currentRadioIndex1:_currentRadioIndex2,
+                    activeColor: ConstantColors.backgroundBlack,
+                    title: Text("${item.text}"),
+                    value: item.index,
+                    onChanged: (val) {
+                      
+                      setModalstate(() {
+                        if(index==1)_currentRadioIndex1=val;
+                         if(index==2)_currentRadioIndex2=val;
+                      });
+                    },
+                  ),
+                  radioBoxDivider(),
+                ],
+              ))
+          .toList(),
+    );
+  
+  }
+
   buildButton(title, VoidCallback callback) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40.0),
@@ -377,16 +551,8 @@ class _FoodInfoPageState extends State<FoodInfoPage> {
   }
 }
 
-// Container(
-//                   height: MediaQuery.of(context).size.height/2,
-//                   width: double.infinity,
-//                   decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                       image: AssetImage('assets/images/tofu.png'),
-//                       fit: BoxFit.cover
-//                     )
-//                   ),
-//                   child: Container(
-//                     color: ConstantColors.backgroundBlack.withOpacity(0.5),
-//                   ),
-//                 )
+class RadioModel {
+  int index;
+  String text;
+  RadioModel({this.index, this.text});
+}

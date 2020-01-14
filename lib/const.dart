@@ -13,7 +13,8 @@ class ConstantColors {
   static Color amberColor = Colors.amber;
   static Color inputTextBackground = Color.fromRGBO(236, 237, 241, 1.0);
   static Color loginButtonBakground = Color.fromRGBO(8, 10, 65, 1.0);
-    static Color greyShadow =Colors.grey.withOpacity(0.5);
+  static Color greyShadow =Colors.grey.withOpacity(0.5);
+  static Color blueColor=    Colors.blue;
 }
 
-//8, 10, 65
+

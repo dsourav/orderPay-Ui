@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   country_code_picker: ^1.2.3
   pin_code_fields: ^2.3.0+3
+  flutter_custom_clippers: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurent_frontend/const.dart';
 
 import 'foodInfo.dart';
+import 'myOrder.dart';
 
 class QrCOdeResultRestaurent extends StatefulWidget {
   @override
@@ -96,6 +97,9 @@ class _QrCOdeResultRestaurentState extends State<QrCOdeResultRestaurent> {
                   child: IconButton(
                     icon: Icon(Icons.add_shopping_cart,color: ConstantColors.greyColor,),
                     onPressed: (){
+                       Navigator.of(context).push(CupertinoPageRoute(
+                            builder: (BuildContext context)=>MyOrderPage()
+                          ));
 
                     },
                   ),
@@ -133,6 +137,7 @@ class _QrCOdeResultRestaurentState extends State<QrCOdeResultRestaurent> {
                     child: Row(
                       children: <Widget>[
                         Container(
+                          width: 100.0,
                           padding: EdgeInsets.all(10.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
