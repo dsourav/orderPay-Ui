@@ -26,6 +26,7 @@ dependencies:
   country_code_picker: ^1.2.3
   pin_code_fields: ^2.3.0+3
   flutter_custom_clippers: ^1.1.0
+  flutter_inner_drawer: ^0.5.4
 
 dev_dependencies:
   flutter_test:

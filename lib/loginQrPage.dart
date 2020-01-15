@@ -15,6 +15,7 @@ class _LoginQrPageState extends State<LoginQrPage> {
     return Scaffold(
       backgroundColor: ConstantColors.whiteColor,
       appBar: AppBar(
+         automaticallyImplyLeading: false,
         elevation: 0.0,
         backgroundColor: ConstantColors.whiteColor,
         leading: IconButton(

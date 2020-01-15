@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:restaurent_frontend/const.dart';
 
 import 'cooking.dart';
+import 'drawer.dart';
 
 class MyOrderPage extends StatefulWidget {
   @override
@@ -16,76 +18,91 @@ class MyOrderPage extends StatefulWidget {
 //               color: ConstantColors.greyColor),
 //  )
 class _MyOrderPageState extends State<MyOrderPage> {
+  final GlobalKey<InnerDrawerState> _innerDrawerKey =
+      GlobalKey<InnerDrawerState>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ConstantColors.whiteColor,
-      appBar: AppBar(
+    return WillPopScope(
+      onWillPop: () async {
+    if (Navigator.of(context).userGestureInProgress)
+      return false;
+    else
+      return true;
+  },
+          child: drawerWidget(context: context,
+          innerDrawerKey:_innerDrawerKey ,
+   bodyWidget: Scaffold(
         backgroundColor: ConstantColors.whiteColor,
-        elevation: 0.0,
-        automaticallyImplyLeading: false,
-        title: Padding(
-          padding: EdgeInsets.only(top: 20.0),
-                  child: Text(
-            "My Order",
-            style: TextStyle(
-                fontSize: 35.0,
-                fontWeight: FontWeight.bold,
-                color: ConstantColors.greyColor),
+        appBar: AppBar(
+          backgroundColor: ConstantColors.whiteColor,
+          elevation: 0.0,
+          
+          title: Padding(
+            padding: EdgeInsets.only(top: 20.0),
+                    child: Text(
+              "My Order",
+              style: TextStyle(
+                  fontSize: 35.0,
+                  fontWeight: FontWeight.bold,
+                  color: ConstantColors.greyColor),
+            ),
           ),
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.arrow_forward,
-              color: ConstantColors.greyColor,
-              size: 30.0,
-            ),
-            onPressed: () {},
-          )
-        ],
-      ),
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                child: ListView(
-                  children: <Widget>[
-                    SizedBox(
-                    height: 20.0,
-                  ),
-                    buildOrederItem('assets/images/chicken_noodles.png',
-                        'Cautro Formaggie-Soup', '\$15.50'),
-                    buildOrederItem('assets/images/recipelab.png',
-                        'Seasonal soup-Restaurant', "\$11.05"),
-                    buildOrederItem('assets/images/tofu.png',
-                        'Cautro Formaggie-Soup', "\$17.94"),
-                  ],
-                ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.arrow_forward,
+                color: ConstantColors.greyColor,
+                size: 30.0,
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 20.0),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                      child: buildButton(ConstantColors.welcomeText,
-                          'Add more food', ConstantColors.inputTextBackground,addMoreFoodButtonPressed)),
-                  SizedBox(
-                    width: 30.0,
-                  ),
-                  Expanded(
-                      child: buildButton(ConstantColors.whiteColor,
-                          'Send to cook', ConstantColors.welcomeText,sendToCookButtonPresses)),
-                ],
-              ),
+              onPressed: () {},
             )
           ],
         ),
+        body: Container(
+          margin: EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  child: ListView(
+                    children: <Widget>[
+                      SizedBox(
+                      height: 20.0,
+                    ),
+                      buildOrederItem('assets/images/chicken_noodles.png',
+                          'Cautro Formaggie-Soup', '\$15.50'),
+                      buildOrederItem('assets/images/recipelab.png',
+                          'Seasonal soup-Restaurant', "\$11.05"),
+                      buildOrederItem('assets/images/tofu.png',
+                          'Cautro Formaggie-Soup', "\$17.94"),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 20.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: buildButton(ConstantColors.welcomeText,
+                            'Add more food', ConstantColors.inputTextBackground,addMoreFoodButtonPressed)),
+                    SizedBox(
+                      width: 30.0,
+                    ),
+                    Expanded(
+                        child: buildButton(ConstantColors.whiteColor,
+                            'Send to cook', ConstantColors.welcomeText,sendToCookButtonPresses)),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      )
       ),
-    );
+    )
+    
+    ;
   }
 
   addMoreFoodButtonPressed(){

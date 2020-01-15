@@ -12,6 +12,7 @@ class SplitPay extends StatefulWidget {
 
 class _SplitPayState extends State<SplitPay> {
   int _value = 6;
+  int _counter=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +46,11 @@ class _SplitPayState extends State<SplitPay> {
                         heroTag: "btn1",
                         mini: true,
                         backgroundColor: ConstantColors.loginpageSignUpButton,
-                        onPressed: () {},
+                        onPressed:_counter<=0?null: () {
+                          setState(() {
+                            _counter=_counter-1;
+                          });
+                        },
                         child: Icon(
                           Icons.remove,
                           color: ConstantColors.whiteColor,
@@ -55,7 +60,7 @@ class _SplitPayState extends State<SplitPay> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          '2',
+                          '$_counter',
                           style: TextStyle(
                               fontSize: 55.0, color: ConstantColors.greyColor),
                         ),
@@ -66,7 +71,11 @@ class _SplitPayState extends State<SplitPay> {
                         heroTag: "btn2",
                         mini: true,
                         backgroundColor: ConstantColors.loginpageSignUpButton,
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            _counter=_counter+1;
+                          });
+                        },
                         child:
                             Icon(Icons.add, color: ConstantColors.whiteColor),
                       ),

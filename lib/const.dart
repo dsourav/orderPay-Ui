@@ -16,7 +16,9 @@ class ConstantColors {
   static Color greyShadow =Colors.grey.withOpacity(0.5);
   static Color blueColor=    Colors.blue;
   static Color paymentDoneBackground = Color.fromRGBO(88, 96, 119, 1.0);
-  
+  static Color drawerShadow = Color.fromRGBO(57, 59, 103, 1.0);
+  static Color fullPayPAymentBackgroundColor = Color.fromRGBO(233, 233, 233, 1.0);
+ // 233, 233, 233
 
 }
 

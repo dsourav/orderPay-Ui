@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurent_frontend/indexPage.dart';
 
-import 'QrscanResultRestaurent.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: IndexPage(),
-      
+       
     );
   }
 }

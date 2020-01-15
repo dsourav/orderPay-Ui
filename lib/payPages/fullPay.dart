@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurent_frontend/const.dart';
+import 'package:restaurent_frontend/paymentPages/fullPaypaymentMethod.dart';
 
 class FullPay extends StatefulWidget {
   @override
@@ -143,7 +145,10 @@ class _FullPayState extends State<FullPay> {
               ],
             ),
           ),
-          onTap: () {},
+          onTap: () {
+              Navigator.of(context).push(CupertinoPageRoute(
+                builder: (BuildContext context) => FullPaypaymentMethod()));
+          },
         ),
       ),
     );
